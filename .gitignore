@@ -1,3 +1,5 @@
 .env
 data
 urban_venv
+.astro
+airflow_settings.yaml
