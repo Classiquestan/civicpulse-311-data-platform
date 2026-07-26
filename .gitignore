@@ -1,5 +1,13 @@
 .env
 data
 urban_venv
-.astro
+
 airflow_settings.yaml
+credentials.sh
+.terraform
+*.hcl
+credentials.txt
+*.tfstate
+*.backup
+*.tfvars
+file.txt
