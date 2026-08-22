@@ -1,45 +1,45 @@
 Overview
 ========
+**CivicPulse 311** is a public sector data engineering platform designed to transform raw New York City 311 non-emergency service request data into actionable operational intelligence. 
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+NYC 311 handles massive daily volumes across multiple city agencies. However, traditional static reporting often lacks live visibility, making it difficult to detect bottlenecks, manage request backlogs, or optimize resource allocation. CivicPulse 311 bridges this gap by deploying an automated, fault-tolerant ETL pipeline that standardizes municipal data and delivers interactive, analytics-ready dashboards for strategic decision-making.
+
+
+
+
+<img width="700" height="350" alt="urban_city_data_pipeline" src="https://github.com/user-attachments/assets/fe4fc989-5343-47b4-a304-af6a196e9413" />
+
+
 
 Project Contents
 ================
 
-Your Astro project contains the following files and folders:
+### 🏢 The Business Context
+* **Operational Scale:** NYC 311 serves as the primary non-emergency channel for residents, generating high request volumes that require live neighborhood-level visibility.
+* **Core Challenges:** Municipal agencies face challenges with API latency, lack of real-time monitoring, and delayed detection of operational anomalies or SLA breaches.
+* **The Solution:** An automated analytics platform that converts raw municipal API streams into curated, structured datasets for live operational reporting.
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+---
 
-Deploy Your Project Locally
-===========================
+### 🎯 Key Objectives
+* **Automated Data Ingestion:** Securely ingest raw service request datasets directly from the NYC 311 REST API without API lag or infrastructure strain.
+* **Data Standardization & Quality:** Cleanse, validate, and enforce schema consistency to transition data from raw staging into curated layers.
+* **Curated Data Storage:** Store structured datasets in **Azure PostgreSQL** following a multi-tier (Silver/Gold) data warehouse design.
+* **Actionable Analytics:** Deliver interactive **Power BI** dashboards for tracking city-wide performance metrics, daily volumes, and SLA compliance.
+* **Pipeline Reliability:** Instrument automated logging, health monitoring, and pipeline failure alerts.
 
-Start Airflow on your local machine by running 'astro dev start'.
+---
 
-This command will spin up five Docker containers on your machine, each for a different Airflow component:
+### 🏗️ End-to-End Pipeline Architecture
+1. **Source:** NYC 311 Open Data REST API
+2. **Ingestion & Orchestration:** API Data → Blob Storage → Azure Data Factory
+3. **Storage & Transformation:** Curated Silver & Gold layers hosted in Azure PostgreSQL
+4. **Business Intelligence:** Interactive Power BI Dashboards
 
-- Postgres: Airflow's Metadata Database
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- DAG Processor: The Airflow component responsible for parsing DAGs
-- API Server: The Airflow component responsible for serving the Airflow UI and API
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+---
 
-When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
-
-Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
-
-Deploy Your Project to Astronomer
-=================================
-
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
-
-Contact
-=======
-
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+### 📊 Expected Outcomes & Business Value
+* **Enhanced SLA Metrics:** Real-time visibility into Open vs. Closed requests and aging backlogs.
+* **Resource Optimization:** Analytics-ready reporting for city agencies to allocate field teams efficiently.
+* **System Health:** Automated error alerts ensuring pipeline reliability and zero unnoticed data drops.
+* **Public Trust:** Improved operational transparency and faster municipal response times.
